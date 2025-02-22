@@ -7,7 +7,10 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
 	// Check if the number of arguments is exactly 1
@@ -26,10 +29,10 @@ func main() {
 	for _, char := range str {
 		// If the character is uppercase, convert to lowercase
 		if char >= 'A' && char <= 'Z' {
-			result += string(char + 'a' - 'A')
+			result += string(char + 32)
 		} else if char >= 'a' && char <= 'z' {
 			// If the character is lowercase, convert to uppercase
-			result += string(char - 'a' + 'A')
+			result += string(char - 32)
 		} else {
 			// If it's not a letter, just append it unchanged
 			result += string(char)

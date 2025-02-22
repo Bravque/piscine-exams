@@ -12,7 +12,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -22,17 +21,24 @@ func main() {
 		return
 	}
 
-	// Get the string, old character, and new character
-	str := os.Args[1]
-	oldChar := os.Args[2]
-	newChar := os.Args[3]
+	// Convert arguments to runes
+	input := []rune(os.Args[1])
+	oldChar := []rune(os.Args[2])
+	newChar := []rune(os.Args[3])
 
-	// Replace the old character with the new character if found
-	if strings.Contains(str, oldChar) {
-		// Replace all occurrences of oldChar with newChar
-		str = strings.ReplaceAll(str, oldChar, newChar)
+	// Ensure the oldChar and newChar are single characters
+	if len(oldChar) != 1 || len(newChar) != 1 {
+		fmt.Println()
+		return
+	}
+
+	// Replace occurrences of oldChar with newChar
+	for i, char := range input {
+		if char == oldChar[0] {
+			input[i] = newChar[0]
+		}
 	}
 
 	// Output the result followed by a newline
-	fmt.Println(str)
+	fmt.Println(string(input))
 }
