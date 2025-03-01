@@ -3,28 +3,23 @@ package main
 import "fmt"
 
 func PrintMemory(arr [10]byte) {
-	// Print the hexadecimal representation
-	for i := 0; i < 10; i++ {
-		// Print each byte in hexadecimal format
-		fmt.Printf("%02x ", arr[i])
-		if i == 7 {
-			fmt.Println() // After printing the 8th byte, move to the next line
-		}
+	// Print hexadecimal representation
+	for _, b := range arr {
+		fmt.Printf("%02x ", b)
 	}
+	fmt.Println()
 
-	// Print the ASCII representation
-	for i := 0; i < 10; i++ {
-		// Check if the character is printable
-		if arr[i] >= 32 && arr[i] <= 126 {
-			fmt.Printf("%c", arr[i])
+	// Print ASCII representation
+	for _, b := range arr {
+		if b >= 32 && b <= 126 {
+			fmt.Printf("%c", b)
 		} else {
-			fmt.Print(".") // Replace non-printable characters with a dot
+			fmt.Print(".")
 		}
 	}
-	fmt.Println() // Print a newline at the end
+	fmt.Println()
 }
 
 func main() {
-	// Test the PrintMemory function with example input
 	PrintMemory([10]byte{'h', 'e', 'l', 'l', 'o', 16, 21, '*', 0, 0})
 }
